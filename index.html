@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor de Turnos Médicos</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>Sistema de Gestión de Turnos Hospitalarios</h1>
+  </header>
+
+  <main class="main-grid">
+    
+    <!-- SECCIÓN IZQUIERDA: REGISTRO Y CONFIGURACIÓN -->
+    <section class="panel-card">
+      <h2>1. Configuración y Nuevo Turno</h2>
+
+      <!-- Configuración de horarios del consultor -->
+      <div class="config-box">
+        <h3>Horarios de Atención del Consultor</h3>
+        <div class="config-row">
+          <div class="form-group">
+            <label for="horaInicio">Apertura:</label>
+            <input type="time" id="horaInicio" value="08:00">
+          </div>
+          <div class="form-group">
+            <label for="horaFin">Cierre:</label>
+            <input type="time" id="horaFin" value="18:00">
+          </div>
+          <button type="button" id="btnActualizarHorarios" class="btn-secondary">Aplicar</button>
+        </div>
+      </div>
+
+      <!-- Formulario de registro de paciente -->
+      <form id="turnoForm" class="turno-form">
+        <div class="form-group">
+          <label for="paciente">Nombre y Apellido del Paciente:</label>
+          <input type="text" id="paciente" placeholder="Ej: Juan Pérez" required>
+        </div>
+
+        <div class="form-group">
+          <label for="dni">DNI / Documento:</label>
+          <input type="text" id="dni" placeholder="Ej: 40.123.456" required>
+        </div>
+
+        <div class="form-group">
+          <label for="especialidad">Especialidad Médica:</label>
+          <select id="especialidad" required>
+            <option value="" disabled selected>Seleccionar especialidad...</option>
+            <option value="Clínica Médica">Clínica Médica</option>
+            <option value="Cardiología">Cardiología</option>
+            <option value="Pediatría">Pediatría</option>
+            <option value="Traumatología">Traumatología</option>
+            <option value="Dermatología">Dermatología</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fecha">Fecha del Turno:</label>
+            <input type="date" id="fecha" required>
+          </div>
+
+          <div class="form-group">
+            <label for="horario">Horario (cada 30 min):</label>
+            <select id="horario" required></select>
+          </div>
+        </div>
+
+        <div id="mensajeAlerta" class="alerta oculto"></div>
+
+        <button type="submit" class="btn-primary">Guardar Turno Asignado</button>
+      </form>
+    </section>
+
+    <!-- SECCIÓN DERECHA: PANEL DE TURNOS REGISTRADOS -->
+    <section class="panel-card">
+      <div class="panel-header">
+        <h2>2. Turnos Registrados</h2>
+        <span id="contadorTurnos" class="badge">0 turnos</span>
+      </div>
+
+      <div class="filtro-box">
+        <input type="text" id="buscarTurno" placeholder="Buscar por paciente, DNI o especialidad...">
+      </div>
+
+      <div id="listaTurnos" class="lista-turnos">
+        <!-- Los turnos se insertan dinámicamente acá -->
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
